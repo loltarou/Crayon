@@ -1,0 +1,575 @@
+/* plugins/custom-ui/style.css */
+
+/* --- カスタムフォント --- */
+/* main.jsのグローバル宣言（APJapaneseFont）を使用する */
+* {
+    font-family: 'APJapaneseFont', 'Spiegel', sans-serif !important;
+}
+
+/* --- 全体背景 --- */
+body {
+    background-color: #fdfbf7 !important;
+    background-image: none !important; /* 固定背景を削除し動的背景にゆずる */
+}
+
+/* ▼ 新規：グローバル動的背景のコンテナ ▼ */
+.crayon-global-bg-container {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -9999 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+.crayon-global-bg {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transform: translate(calc(-50% + var(--bg-x, 0px)), calc(-50% + var(--bg-y, 0px))) scale(var(--bg-s, 1)) !important;
+}
+
+/* --- 手描きフィルター一括適用 --- */
+.summoner-xp-radial-progress-circle,
+.style-profile-summoner-name,
+.summoner-xp-radial-numbers,
+.summoner-xp-radial-hover-text {
+    filter: var(--crayon-filter) !important;
+}
+.summoner-xp-radial-progress-circle {
+    stroke: #2c2c2c !important;
+    stroke-width: 3.5px !important; 
+}
+
+/* =========================================================
+   上部メニューのすりガラス効果
+   ========================================================= */
+rcp-fe-lol-navigation,
+.navbar-blur,
+.navbar_backdrop {
+    background-color: transparent !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* --- バナー周りの調整 --- */
+.regalia-banner-video, 
+.regalia-banner-waiting, 
+.regalia-banner-outro,
+.regalia-banner-asset-static-background {
+    display: none !important;
+}
+.regalia-banner-v2-root,
+.regalia-banner-asset-static {
+    background-color: transparent !important;
+    border: none !important; 
+    overflow: visible !important; 
+    filter: none !important;
+    transition: box-shadow 0.2s ease, outline 0.2s ease !important;
+}
+.regalia-banner-asset-static-image {
+    display: block !important; 
+    position: absolute !important; 
+    height: auto !important; 
+    object-fit: cover !important; 
+    object-position: center top !important; 
+    max-width: none !important; 
+    filter: none !important; 
+    -webkit-mask-image: linear-gradient(to bottom, transparent 15%, black 35%, black 100%) !important;
+    mask-image: linear-gradient(to bottom, transparent 15%, black 35%, black 100%) !important;
+}
+
+/* --- コンテナ透明化・不要要素削除 --- */
+html, #rcp-fe-viewport-main, .screen-root, rcp-fe-lol-parties,
+.parties-view, .parties-background-mask,
+.parties-content, .parties-lower-section, .lol-social-sidebar, .rcp-fe-viewport-sidebar,
+.store-backdrop, .__rcp-fe-lol-store, .loot-backdrop, .loot-backdrop.background-static, .loot-loading-screen,
+.collections-application, .collections-routes, .yourshop-root, .personalized-offers-root,
+.mythic-shoppefront, .shoppefront-container, .shoppefront-container-area, .shoppefront-main-area,
+.sanctum-root-addon-component, .sanctum-content-wrapper, .sanctum-backdrop,
+.clash-root-background, .clash-root-background-landing, .clash-social-persistent,
+.champ-select-bg-darken, .stats-backdrop, .match-details-root, .cdp-backdrop-component,
+.rcp-fe-lol-event-shop-application, .event-shop-index, .event-shop-page-header, .event-shop-progression, .event-shop-progression-info,
+.postgame-header-section, .postgame-champion-background-wrapper, .rcp-fe-lol-tft-application-background,
+.lobby-header-overlay {
+    background: transparent !important;
+    background-image: none !important;
+    background-color: transparent !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* ▼ 修正：親コンテナを「消す」のではなく「完全に透明」にして中身を透けさせる ▼ */
+#activity-center, .activity-center-application, .activity-center-ready,
+.activity-center__contents, .activity-center-default-activity,
+.activity-center__persistent-layer-container, .activity-center__background-component_container,
+.activity-center__background-component, 
+.activity-center__background-component--override, 
+.activity-center__tabs_container {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    transition: box-shadow 0.2s ease !important;
+}
+
+/* ▼ 修正：--override を display:none のリストから外しました ▼ */
+.activity-center-media-card__image-gradient, .shoppefront-background,
+.sanctum-active-banner-static-background, .sanctum-banner-shroud, .sanctum-banner-shroud-bot,
+.store-loading, .activity-center__tabs_section-divider, .loot-to-store-button, 
+.clash-root-action-timeline-background-gradient, .clash-aram-intro-modal, 
+.event-shop-xp-vertical-divider, .event-shop-page-header-vertical-divider,
+.tft-home-footer-bg, .tft-hub-footer-bg, .lol-loading-screen-spinner,
+.lol-loading-screen-status-container, .summoner-level-ring, .rcp-fe-lol-home-loading-spinner,
+.style-profile-loading-spinner, .spinner, .parties-background-mask, 
+.loot-backdrop.background-static, .clash-root-background-landing, 
+.activity-center__tabs_footer_divider, .loading-tab:after, .sub-border, 
+.lol-uikit-dialog-frame-sub-border, .video-background-container,
+.lol-uikit-vignette-celebration-layer, .particle-glow-overlay-wrapper,
+.play-button-frame, .play-button-video, .play-button-hover-magic,
+lol-uikit-video-state-machine, .deep-links-promo,
+lol-uikit-video, video.lol-uikit-video-content {
+    display: none !important;
+}
+
+/* 不要な背景マップや画像を明示的に消す */
+img[src*="map-south.png"], img[src*="map-north.png"], 
+img[src*="champ-select-planning-intro.jpg"], img[src*="gameflow-background.jpg"], 
+img[src*="ready-check-background.png"] {
+    display: none !important;
+}
+
+/* テキストの色と重さを統一 */
+.section-text, .player-name, .player-name__game-name, .player-name__tag-line,
+.status-message, .activity-center__header_title, .activity-center__header_description,
+.activity-center__tab_label_display, .lol-social-roster-group-header-title,
+.shoppefront-sidebar-category-title, .shoppefront-category-title,
+.catalog-name, .sanctum-active-banner-title {
+    color: #1a1a1a !important;
+    text-shadow: none !important;
+    font-weight: 800 !important;
+}
+
+.navigation-badge-container, .deep-links-promo-element, .menu_item_navbar_competitive {
+    display: none !important;
+}
+.menu-item-glow, .section-glow-container, .section-glow {
+    display: none !important;
+}
+.loot-category-tab img {
+    filter: brightness(0) !important;
+}
+.loot-action-tab-mass-disenchant-button-path {
+    fill: #1a1a1a !important;
+}
+
+.profile-challenge-banner-tokens,
+.challenges-crystal-container,
+.challenge-banner-token-container,
+.achievement-token-container,
+.style-profile-challenge-banner {
+    display: none !important;
+}
+
+.lol-social-avatar[me] {
+    transition: box-shadow 0.2s ease !important;
+}
+
+/* ▼ ホーム背景のコンテナ設定（z-indexを上げて親の裏に落ちないように保護） ▼ */
+.activity-center__background-component_container {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100vw !important;  
+    height: 100vh !important; 
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+/* モード背景のクリック泥棒を回避 */
+.parties-background {
+    position: absolute !important;
+    inset: 0 !important;
+    background: transparent !important;
+    overflow: hidden !important;
+    transition: box-shadow 0.2s ease !important;
+    pointer-events: none !important;
+}
+
+.play-button-text,
+.play-button-container lol-uikit-video {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+.play-button-container::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-image: url('//plugins/custom-ui/images/playbutton/play.png') !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    z-index: 0 !important;
+    filter: none !important;
+}
+.play-button-container {
+    background: transparent !important;
+    border: none !important; 
+    box-shadow: none !important;
+    border-radius: 6px !important;
+    position: relative !important; 
+    transition: transform 0.1s ease, filter 0.1s ease, box-shadow 0.2s ease, outline 0.2s ease !important;
+}
+
+.style-profile-ranked-crest-ranked lol-regalia-emblem-element {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+.style-profile-ranked-crest-ranked {
+    background-color: transparent !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    transition: filter 0.2s ease !important;
+}
+
+/* ボーダー調整 */
+lol-regalia-crest-v2-element.custom-icon-applied {
+    background: transparent !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+lol-uikit-themed-level-ring-v2.custom-border-applied {
+    background-color: transparent !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    display: block !important;
+    transition: filter 0.2s ease !important;
+}
+
+.style-profile-backdrop-component,
+.style-profile-backdrop-container,
+.style-profile-masked-image,
+.style-profile-background-image {
+    opacity: 1 !important;
+    visibility: visible !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+/* プロフ背景を確実に奥に押し込む */
+.style-profile-backdrop-container {
+    background-color: transparent !important;
+    position: absolute !important;
+    inset: 0 !important;
+    overflow: hidden !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+}
+
+.style-profile-emblem-header-title,
+.style-profile-emblem-header-subtitle,
+.style-profile-champion-mastery-score {
+    transition: color 0.2s ease !important;
+}
+.style-profile-emblem-wrapper:hover {
+    opacity: 1 !important;
+}
+
+.parties-game-navs-item[active="true"],
+.parties-game-navs-item:hover {
+    font-weight: bold !important;
+    border-bottom: 2px solid #1d4ed8 !important; 
+}
+.parties-game-type-card-category-btn {
+    transition: color 0.2s ease !important;
+}
+.parties-game-type-card-category-btn.current,
+.parties-game-type-card-category-div:hover .parties-game-type-card-category-btn {
+    font-weight: bold !important;
+}
+.parties-game-type-card-category-radio-option {
+    display: none !important;
+}
+
+.game-type-card {
+    background-color: transparent !important;
+    border: none !important; 
+    position: relative !important;
+}
+
+.parties-game-type-upper-half,
+.parties-game-type-lower-half,
+.parties-game-type-icon .icon-frame,
+.parties-game-type-card-break,
+.parties-game-type-card-name {
+    position: relative !important;
+}
+
+.parties-game-type-icon {
+    position: relative !important;
+}
+.parties-game-type-icon::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important; 
+    left: 0 !important; 
+    right: 0 !important; 
+    bottom: 0 !important;
+    border-radius: 8px !important;
+    pointer-events: none !important; 
+    z-index: -1 !important;
+    filter: var(--crayon-line-filter) !important; 
+    transition: all 0.2s ease !important;
+}
+.game-type-card.selected .parties-game-type-icon::before,
+.game-type-card:hover .parties-game-type-icon::before {
+    background-color: rgba(37, 99, 235, 0.05) !important; 
+}
+
+/* =========================================================
+   ライセンス認証画面 (Crayon Auth)
+   ========================================================= */
+#crayon-auth-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(10, 20, 40, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    z-index: 9999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: auto !important; 
+}
+
+#crayon-auth-modal {
+    background: #0a1428 !important;
+    border: 2px solid #c8aa6e !important;
+    padding: 40px !important;
+    border-radius: 8px !important;
+    text-align: center !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+    width: 360px !important;
+    pointer-events: auto !important;
+}
+
+#crayon-auth-modal h2 {
+    color: #c8aa6e !important;
+    margin: 0 0 10px 0 !important;
+    font-size: 24px !important;
+    letter-spacing: 2px !important;
+}
+
+#crayon-auth-modal p {
+    color: #a0b4c8 !important;
+    margin: 0 0 20px 0 !important;
+    font-size: 14px !important;
+}
+
+#crayon-auth-key {
+    width: 100% !important;
+    padding: 12px !important;
+    margin-bottom: 20px !important;
+    background: #060e1a !important;
+    border: 1px solid #785a28 !important;
+    color: #f0e6d3 !important;
+    font-size: 16px !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+}
+
+#crayon-auth-key:focus {
+    border-color: #c8aa6e !important;
+    box-shadow: 0 0 10px rgba(200, 170, 110, 0.3) !important;
+}
+
+#crayon-auth-submit {
+    width: 100% !important;
+    padding: 12px !important;
+    background: linear-gradient(180deg, #785a28 0%, #5a4020 100%) !important;
+    border: 1px solid #c8aa6e !important;
+    color: #f0e6d3 !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: filter 0.2s !important;
+}
+
+#crayon-auth-submit:hover {
+    filter: brightness(1.2) !important;
+}
+
+#crayon-auth-submit:disabled {
+    background: #333 !important;
+    border-color: #555 !important;
+    color: #888 !important;
+    cursor: not-allowed !important;
+    background-image: none !important;
+}
+
+#crayon-auth-msg {
+    margin-top: 15px !important;
+    margin-bottom: 0 !important;
+    font-weight: bold !important;
+    min-height: 20px !important;
+}
+
+/* =========================================================
+   ▼ Crayon Party UI 縦並びスマートレイアウト ▼
+   ========================================================= */
+
+.crayon-topbar-icon:hover svg path, .crayon-topbar-icon:hover svg polygon {
+    fill: #a68b5e !important; 
+    stroke: #f0e6d3 !important;
+}
+
+#crayon-party-ui {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.95) !important;
+    z-index: 99999 !important;
+    background: rgba(10, 20, 40, 0.95) !important;
+    border: 2px solid #785a28 !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    color: #f0e6d3 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    backdrop-filter: blur(12px) !important;
+    width: 260px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+    pointer-events: auto !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+#crayon-party-ui.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translate(-50%, -50%) scale(1) !important; 
+}
+
+#crayon-party-ui #party-title {
+    font-weight: bold !important;
+    color: #c8aa6e !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    letter-spacing: 1px !important;
+    cursor: move !important; 
+    user-select: none !important;
+    padding-bottom: 5px !important;
+    border-bottom: 1px solid rgba(120, 90, 40, 0.5) !important;
+}
+
+#crayon-party-ui #party-status {
+    text-align: center !important;
+    color: #a0b4c8 !important;
+    font-size: 12px !important;
+}
+
+#crayon-party-ui .party-input-group {
+    display: flex !important;
+    gap: 6px !important;
+    width: 100% !important;
+}
+
+#crayon-party-ui #party-input-code {
+    flex: 1 !important;
+    background: #060e1a !important;
+    border: 1px solid #785a28 !important;
+    color: #f0e6d3 !important;
+    padding: 8px !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    font-size: 14px !important;
+    outline: none !important;
+    transition: border-color 0.2s ease !important;
+    min-width: 0 !important;
+}
+#crayon-party-ui #party-input-code:focus {
+    border-color: #c8aa6e !important;
+}
+#crayon-party-ui #party-input-code:read-only {
+    background: #0a1428 !important;
+    color: #c8aa6e !important;
+    font-weight: bold !important;
+    letter-spacing: 2px !important;
+    border-color: #a68b5e !important;
+    cursor: default !important;
+}
+
+#crayon-party-ui button {
+    background: linear-gradient(180deg, #1e2328 0%, #010101 100%) !important;
+    border: 2px solid #785a28 !important;
+    color: #f0e6d3 !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    font-size: 13px !important;
+    letter-spacing: 1px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.1s ease !important;
+}
+
+#crayon-party-ui button * {
+    font-family: 'APJapaneseFont', sans-serif !important;
+}
+
+#crayon-party-ui button:hover {
+    filter: brightness(1.15) !important;
+    border-color: #a68b5e !important;
+}
+
+#crayon-party-ui button:active {
+    transform: scale(0.96) !important;
+    border-color: #c8aa6e !important;
+    background: linear-gradient(180deg, #010101 0%, #1e2328 100%) !important;
+    box-shadow: inset 0 0 8px rgba(200, 170, 110, 0.4) !important;
+}
+
+#crayon-party-ui .party-main-btn {
+    width: 100% !important;
+    padding: 10px !important;
+}
+
+#crayon-party-ui #btn-party-side {
+    width: 36px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#crayon-party-ui #btn-party-side svg {
+    width: 16px !important;
+    height: 16px !important;
+    transition: stroke 0.2s ease, transform 0.1s ease !important;
+}
+
+/* =========================================================
+   ポップアップを最前面に固定 (安全な範囲のみ)
+   ========================================================= */
+#rcp-fe-lol-match-found,
+.match-found,
+.lol-uikit-layer-manager-wrapper,
+.lol-uikit-dialog-manager-layer,
+lol-uikit-full-page-modal,
+.modal-container {
+    z-index: 999999 !important;
+}
