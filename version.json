@@ -1,1 +1,13 @@
-{ "version": "1.0.0" }
+{
+  "version": "1.0.1",
+  "files": [
+    "style.css",
+    "panel.html",
+    "src/adjuster.js",
+    "src/config.js",
+    "src/main.js",
+    "src/media.js",
+    "src/opgg.js",
+    "src/swapper.js"
+  ]
+}
