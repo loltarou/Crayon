@@ -2,6 +2,8 @@
 
 ## 概要
 本プロジェクトは、Pengu Loaderを介してLeague of LegendsクライアントのUIをカスタマイズするためのプラグインです。
+https://github.com/PenguLoader/PenguLoaderからpenguloderをインストールしpluginsに入れてください
+導入のサポート、ライセンスの発行はDiscordで行ってます
 同梱されたローカルサーバーと連携することで、クライアント内の各種画像・動画の動的な差し替え、インゲームUIの配置調整、およびパーティメンバー間でのメディア同期機能を提供します。
 
 ## 主な機能
