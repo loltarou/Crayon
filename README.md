@@ -24,8 +24,8 @@ https://github.com/PenguLoader/PenguLoader
 ## インストールとセットアップ
 1. 本フォルダ（`Crayon`）を、Pengu Loaderの `plugins` フォルダ内に配置してください。
 2. League of Legendsクライアント（LeagueClient.exe）を起動し、ログインします。
-3. crayon.exeを起動します
-4. タスクトレイから終了すれば閉じます。
+3. crayon.exeを起動します。ライセンスにはnqpと入力して認証してください。
+5. タスクトレイから終了すれば閉じます。
 
 
 
